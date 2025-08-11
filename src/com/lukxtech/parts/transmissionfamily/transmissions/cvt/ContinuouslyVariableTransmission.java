@@ -99,7 +99,7 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
         this.cvtModelType = cvtModelType;
     }
 
-    public void setCvtModelType(String cvtModelType){
+    public void setCvtModelType(String cvtModelType) throws InvalidCVTModelTypeException{
         this.cvtModelType = CVTModelType.fromString(cvtModelType);
     }
 
