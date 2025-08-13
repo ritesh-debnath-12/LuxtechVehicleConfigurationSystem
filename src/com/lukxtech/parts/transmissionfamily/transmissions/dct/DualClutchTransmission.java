@@ -13,6 +13,19 @@ import com.lukxtech.parts.transmissionfamily.transmissions.dct.exceptions.Invali
 
 import java.util.ArrayList;
 
+/**
+ * <h3>Dual Clutch Transmission Model</h3>
+ * <p>This class represents a Dual Clutch Transmission (DCT) system.</p>
+ * <p>DCT transmissions use two separate clutches for odd and even gears, enabling</p>
+ * <p>pre-selection of the next gear and providing the fastest gear changes among automatic transmissions.</p>
+ * <p>It extends the AbstractTransmissionModel class and implements the DCTInterface.</p>
+ * 
+ * @see AbstractTransmissionModel
+ * @see DCTInterface
+ * @see DCTModelType
+ * @author Neko
+ * @since 0.0.0
+ */
 public class DualClutchTransmission extends AbstractTransmissionModel implements DCTInterface {
     private DCTModelType dctModelType;
     private ArrayList<Double> gearRatioList;

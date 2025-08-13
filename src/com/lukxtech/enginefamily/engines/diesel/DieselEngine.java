@@ -14,6 +14,15 @@ import com.lukxtech.enginefamily.engines.diesel.exceptions.InvalidGlowPlugCountE
 import com.lukxtech.enginefamily.engines.diesel.exceptions.InvalidParticulateFilterDataException;
 import com.lukxtech.enginefamily.interfaces.InternalCombustionEngineInterface;
 
+/**
+ * <h3>Diesel Engine Model</h3>
+ * <p>This class represents a diesel engine model.</p>
+ * <p>It extends the AbstractEngineModel class and implements the InternalCombustionEngineInterface.</p>
+ * @see AbstractEngineModel
+ * @see InternalCombustionEngineInterface
+ * @author Neko
+ * @since 0.0.0
+ */
 public class DieselEngine extends AbstractEngineModel implements InternalCombustionEngineInterface {
     private CetaneNumber cetaneNumber;
     private TurbochargerType turbochargerType;
@@ -22,6 +31,36 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
     private boolean isParticulateFilterPresent;
     private ExhaustGasRecirculationState exhaustGasRecirculationState;
 
+    /**
+     * <p>Constructor for the DieselEngine class</p>
+     *
+     * @deprecated This constructor is deprecated. Please use the builder instead.
+     * @param modelNo -> The model number of the engine
+     * @param modelName -> The name of the engine model
+     * @param displacement -> The engine displacement in cubic centimeters
+     * @param minPower -> The minimum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxPower -> The maximum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxRPM -> The maximum revolutions per minute of the engine
+     * @param cetaneNumber -> The cetane number of the engine
+     * @param turbochargerType -> The type of turbocharger used
+     * @param glowPlugCount -> The number of glow plugs
+     * @param fuelPumpType -> The type of fuel pump used
+     * @param isParticulateFilterPresent -> Whether the engine has a particulate filter
+     * @param exhaustGasRecirculationState -> The state of the exhaust gas recirculation system
+     * 
+     * <p> -- ENUMS -- </p>
+     * <ul>
+     *     <li>{@link CetaneNumber}</li>
+     *     <li>{@link TurbochargerType}</li>
+     *     <li>{@link FuelPumpType}</li>
+     *     <li>{@link ExhaustGasRecirculationState}</li>
+     * </ul>
+     * 
+     * <p> -- BUILDER -- </p>
+     * <ul>
+     *     <li>{@link Builder}</li>
+     * </ul>
+     */
     @Deprecated
     public DieselEngine(String modelNo,
                         String modelName,
@@ -45,6 +84,41 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
         this.exhaustGasRecirculationState = exhaustGasRecirculationState;
     }
 
+    /**
+     * <p>Constructor for the DieselEngine class</p>
+     *
+     * @deprecated This constructor is deprecated. Please use the builder instead.
+     * @param modelNo -> The model number of the engine
+     * @param modelName -> The name of the engine model
+     * @param displacement -> The engine displacement in cubic centimeters
+     * @param minPower -> The minimum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxPower -> The maximum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxRPM -> The maximum revolutions per minute of the engine
+     * @param cetaneNumber -> The cetane number of the engine
+     * @param turbochargerType -> The type of turbocharger used
+     * @param glowPlugCount -> The number of glow plugs
+     * @param fuelPumpType -> The type of fuel pump used
+     * @param isParticulateFilterPresent -> Whether the engine has a particulate filter
+     * @param exhaustGasRecirculationState -> The state of the exhaust gas recirculation system
+     *
+     * @throws InvalidCetaneNumberException if the cetane number is invalid
+     * @throws InvalidTurbochargerTypeException if the turbocharger type is invalid
+     * @throws InvalidFuelPumpTypeException if the fuel pump type is invalid
+     * @throws InvalidExhaustGasRecirculationStateException if the exhaust gas recirculation state is invalid
+     *
+     * * <p> -- ENUMS -- </p>
+     * <ul>
+     *     <li>{@link CetaneNumber}</li>
+     *     <li>{@link TurbochargerType}</li>
+     *     <li>{@link FuelPumpType}</li>
+     *     <li>{@link ExhaustGasRecirculationState}</li>
+     * </ul>
+     * 
+     * <p> -- BUILDER -- </p>
+     * <ul>
+     *     <li>{@link Builder}</li>
+     * </ul>
+     */
     @Deprecated
     public DieselEngine(String modelNo,
                         String modelName,
@@ -69,6 +143,30 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
         this.exhaustGasRecirculationState = ExhaustGasRecirculationState.fromString(exhaustGasRecirculationState);
     }
 
+    /**
+     * Builder for the DieselEngine class
+     *
+     * <p>Usage</p>
+     * <pre>
+     * DieselEngine dieselEngine = new DieselEngine.Builder()
+     *         .modelNo("LUKX-DI_96CFKX")
+     *         .modelName("Halloween Weed")
+     *         .displacement(2998)
+     *         .cetaneNumber(58)
+     *         .minPower(10)
+     *         .maxPower(180)
+     *         .maxRPM(4500)
+     *         .cetaneNumber(48)
+     *         .turbochargerType(TurbochargerType.VARIABLE_GEOMETRY)
+     *         .fuelPumpType(FuelPumpType.INLINE)
+     *         .glowPlugCount(2)
+     *         .isParticulateFilterPresent(false)
+     *         .exhaustGasRecirculationState(ExhaustGasRecirculationState.OFF)
+     *         .build();
+     * </pre>
+     *
+     * <p>NOTE: Feel free to substitute enum values as strings or int</p>
+     */
     public static class Builder extends AbstractEngineBuilder<DieselEngine, Builder>{
         private CetaneNumber cetaneNumber;
         private TurbochargerType turbochargerType;
@@ -123,7 +221,7 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
         }
         @Override
         public void validate(){
-            validate_initial();
+            validate_initial(); // This always needs to be the first to be validated
             if(cetaneNumber == null)    throw new InvalidCetaneNumberException("ALERT! CETANE NUMBER NOT SPECIFIED! NULL_EXCEPTION");
             if(turbochargerType == null)    throw new InvalidTurbochargerTypeException("ALERT! TURBOCHARGER TYPE NOT SPECIFIED! INVALID_EXCEPTION");
             if(fuelPumpType == null)    throw new InvalidFuelPumpTypeException("ALERT! FUEL PUMP TYPE NOT SPECIFIED! NULL_EXCEPTION");
@@ -194,11 +292,17 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
     public CetaneNumber getCetaneNumber() {
         return cetaneNumber;
     }
+    public void setCetaneNumber(int cetaneNumber) throws InvalidCetaneNumberException {
+        this.cetaneNumber = CetaneNumber.fromInt(cetaneNumber);
+    }
     public void setCetaneNumber(CetaneNumber cetaneNumber) {
         this.cetaneNumber = cetaneNumber;
     }
     public TurbochargerType getTurbochargerType() {
         return turbochargerType;
+    }
+    public void setTurbochargerType(String turbochargerType) throws InvalidTurbochargerTypeException {
+        this.turbochargerType = TurbochargerType.fromString(turbochargerType);
     }
     public void setTurbochargerType(TurbochargerType turbochargerType) {
         this.turbochargerType = turbochargerType;
@@ -223,6 +327,9 @@ public class DieselEngine extends AbstractEngineModel implements InternalCombust
     }
     public ExhaustGasRecirculationState getExhaustGasRecirculationState() {
         return exhaustGasRecirculationState;
+    }
+    public void setExhaustGasRecirculationState(String exhaustGasRecirculationState) throws InvalidExhaustGasRecirculationStateException {
+        this.exhaustGasRecirculationState = ExhaustGasRecirculationState.fromString(exhaustGasRecirculationState);
     }
     public void setExhaustGasRecirculationState(ExhaustGasRecirculationState exhaustGasRecirculationState) {
         this.exhaustGasRecirculationState = exhaustGasRecirculationState;

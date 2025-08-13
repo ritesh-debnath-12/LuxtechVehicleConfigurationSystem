@@ -2,6 +2,20 @@ package com.lukxtech.enginefamily.engines.diesel.enums;
 
 import com.lukxtech.enginefamily.engines.diesel.exceptions.InvalidCetaneNumberException;
 
+/**
+ * <p>Cetane Number Enum</p>
+ * <p>This enum represents the different types of cetane numbers for diesel fuels.</p>
+ * <p>Currently, applicable values: </p>
+ * <ul>
+ * <li>REGULAR_DIESEL(48)</li>
+ * <li>PREMIUM_DIESEL(55)</li>
+ * <li>BIODIESEL_B100(58)</li>
+ * <li>BIODIESEL_BLEND_B20(50)</li>
+ * <li>SYNTHETIC_DIESEL(62)</li>
+ * </ul>
+ * 
+ * This enum comes with a static fromInt factory method to convert int to enum values.
+ */
 public enum CetaneNumber {
     REGULAR_DIESEL, PREMIUM_DIESEL, BIODIESEL_B100, BIODIESEL_BLEND_B20, SYNTHETIC_DIESEL;
 

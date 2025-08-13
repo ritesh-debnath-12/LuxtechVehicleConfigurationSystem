@@ -30,11 +30,13 @@ Oh, the thrill. Implemented that and thought to myself....hmm, what does it take
 ---
 
 ## Next Steps
+There is a Kanban Board available for this project! [Check it out!](https://github.com/users/ritesh-debnath-12/projects/2)
+
 See, this codebase doesn't have any SRS or formal planning or structure. Its more of an exploratory project. However after writing the DCT Transmission, I have some plans
 
-- [ ] Create and maintain a CHANGELOG.md
-- [ ] Decide a LICENSE
-- [ ] Create a roadmap
+- [x] Create and maintain a CHANGELOG.md
+- [x] Decide a LICENSE
+- [x] Create a roadmap
 - [ ] Implement all the parts necessary for a vehicle
     - [ ] {Insert Vehicle Parts here...}
 - [ ] Write tests for all components(This project doesn't have Maven, so its prolly going to be manual)
@@ -48,5 +50,8 @@ See, this codebase doesn't have any SRS or formal planning or structure. Its mor
 ## Conclusion
 I have no idea what I'm doing, but I'm excited to find out.
 I really really hope I can continue this journey and see where it takes me.
+
+PS: If you are wondering why the iml file is called `Master_`, its because this assignment was considered as a master assignment.
+    and back then, I never really thought I would work on it as a project...it is what it is, ig?
 
 ---

@@ -2,6 +2,18 @@ package com.lukxtech.enginefamily.engines.electric.enums;
 
 import com.lukxtech.enginefamily.engines.electric.exceptions.InvalidElectricMotorTypeException;
 
+/**
+ * <p> Electric Motor Type Enum </p>
+ * <p> This Enum represents the different types of electric motors used in vehicles.</p>
+ * <p> Currently, applicable values: </p>
+ * <ul>
+ *     <li>AC_INDUCTION</li>
+ *     <li>PERMANENT_MAGNET</li>
+ *     <li>BRUSHLESS_DC</li>
+ * </ul>
+ * 
+ * This enum comes with a static fromString factory method to convert strings to enum values.
+ */
 public enum ElectricMotorType {
     AC_INDUCTION, PERMANENT_MAGNET, BRUSHLESS_DC;
 

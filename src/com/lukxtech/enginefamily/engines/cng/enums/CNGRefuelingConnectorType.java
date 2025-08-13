@@ -2,6 +2,19 @@ package com.lukxtech.enginefamily.engines.cng.enums;
 
 import com.lukxtech.enginefamily.engines.cng.exceptions.InvalidCNGRefuelingConnectorTypeException;
 
+/**
+ * <p>CNG Refueling Connector Types</p>
+ * <p>This enum represents the different types of CNG refueling connectors.</p>
+ * <p>Currently applicable values:</p> 
+ * <ul>
+ * <li>TYPE_1</li>
+ * <li>TYPE_2</li>
+ * <li>TYPE_3</li>
+ * <li>OTHER</li>
+ * </ul>
+ *
+ * This enum comes with a static fromString factory method to convert strings to enum values.
+ */
 public enum CNGRefuelingConnectorType {
     TYPE_1, TYPE_2, TYPE_3, OTHER;
 

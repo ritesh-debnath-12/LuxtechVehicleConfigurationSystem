@@ -11,28 +11,95 @@ import com.lukxtech.parts.transmissionfamily.transmissions.manual.exceptions.Inv
 
 import java.util.ArrayList;
 
+/**
+ * <h3>Manual Transmission Model</h3>
+ * <p>This class represents a manual transmission system.</p>
+ * <p>Manual transmissions require direct driver input for gear selection and provide</p>
+ * <p>complete control over the vehicle's gear changes.</p>
+ * <p>It extends the AbstractTransmissionModel class and implements the ManualInterface.</p>
+ * 
+ * @see AbstractTransmissionModel
+ * @see ManualInterface
+ * @see ManualModelType
+ * @author Neko
+ * @since 0.0.0
+ */
 public class ManualTransmission extends AbstractTransmissionModel implements ManualInterface {
     private ManualModelType manualModelType;
     private ArrayList<Double> gearRatioList;
     
+    /**
+     * <p>Constructor for the ManualTransmission class</p>
+     *
+     * @deprecated This constructor is deprecated. Please use the builder instead.
+     * @param transmissionType -> The type of transmission (should be MANUAL)
+     * @param forwardGears -> The number of forward gears available
+     * @param gearRatioList -> List of gear ratios for each forward gear
+     * @param manualModelType -> The specific manual transmission model type
+     * 
+     * <p> -- ENUMS -- </p>
+     * <ul>
+     *     <li>{@link ManualModelType}</li>
+     * </ul>
+     * 
+     * <p> -- BUILDER -- </p>
+     * <ul>
+     *     <li>{@link Builder}</li>
+     * </ul>
+     */
     @Deprecated
     public ManualTransmission(TransmissionType transmissionType, int forwardGears, ArrayList<Double> gearRatioList, ManualModelType manualModelType) {
         super(transmissionType, forwardGears);
         this.gearRatioList = gearRatioList;
         this.manualModelType = manualModelType;
     }
+    /**
+     * <p>Constructor for the ManualTransmission class with String transmission type</p>
+     *
+     * @deprecated This constructor is deprecated. Please use the builder instead.
+     * @param transmissionType -> The type of transmission as string
+     * @param forwardGears -> The number of forward gears available
+     * @param manualModelType -> The specific manual transmission model type
+     * @throws InvalidTransmissionTypeException if transmission type is invalid
+     */
     @Deprecated
     public ManualTransmission(String transmissionType, int forwardGears, ManualModelType manualModelType) throws InvalidTransmissionTypeException {
         super(transmissionType, forwardGears);
         this.manualModelType = manualModelType;
         this.gearRatioList = getGearRatioData();
     }
+    /**
+     * <p>Constructor for the ManualTransmission class with String inputs</p>
+     *
+     * @deprecated This constructor is deprecated. Please use the builder instead.
+     * @param transmissionType -> The type of transmission as string
+     * @param forwardGears -> The number of forward gears available
+     * @param manualModelType -> The specific manual transmission model type as string
+     * @throws InvalidManualModelTypeException if manual model type is invalid
+     * @throws InvalidTransmissionTypeException if transmission type is invalid
+     */
     @Deprecated
     public ManualTransmission(String transmissionType, int forwardGears, String manualModelType) throws InvalidManualModelTypeException, InvalidTransmissionTypeException {
         super(transmissionType, forwardGears);
         this.manualModelType = ManualModelType.fromString(manualModelType);
         this.gearRatioList = getGearRatioData();
     }
+    
+    /**
+     * Builder for the ManualTransmission class
+     *
+     * <p>Usage</p>
+     * <pre>
+     * ManualTransmission transmission = new ManualTransmission.Builder()
+     *         .transmissionType(TransmissionType.MANUAL)
+     *         .forwardGears(6)
+     *         .manualModelType(ManualModelType.MP6)
+     *         .gearRatioList(gearRatios)
+     *         .build();
+     * </pre>
+     *
+     * <p>NOTE: Feel free to substitute enum values as strings</p>
+     */
     public static class Builder extends AbstractTransmissionBuilder<ManualTransmission, Builder> {
         private ManualModelType manualModelType;
         private ArrayList<Double> gearRatioList;

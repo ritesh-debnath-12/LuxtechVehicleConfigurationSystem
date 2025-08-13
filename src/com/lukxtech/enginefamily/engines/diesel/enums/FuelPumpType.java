@@ -2,6 +2,18 @@ package com.lukxtech.enginefamily.engines.diesel.enums;
 
 import com.lukxtech.enginefamily.engines.diesel.exceptions.InvalidFuelPumpTypeException;
 
+/**
+ * <p>Fuel Pump Type Enum</p>
+ * <p>This enum represents the different types of fuel pumps used in diesel engines.</p>
+ * <p>Currently, applicable values: </p>
+ * <ul>
+ * <li>INLINE</li>
+ * <li>ROTARY</li>
+ * <li>COMMON_RAIL</li>
+ * </ul>
+ *
+ * <p>This enum comes with a static fromString factory method to convert String to enum values.</p>
+ */
 public enum FuelPumpType {
     INLINE, ROTARY, COMMON_RAIL;
 

@@ -11,6 +11,19 @@ import com.lukxtech.parts.transmissionfamily.common.exceptions.BadGearRatioListE
 
 import java.util.ArrayList;
 
+/**
+ * <h3>Automated Manual Transmission Model</h3>
+ * <p>This class represents an Automated Manual Transmission (AMT) system.</p>
+ * <p>AMT transmissions combine the efficiency of manual transmissions with automated</p>
+ * <p>gear shifting, reducing driver intervention while maintaining discrete gear ratios.</p>
+ * <p>It extends the AbstractTransmissionModel class and implements the AMTInterface.</p>
+ * 
+ * @see AbstractTransmissionModel
+ * @see AMTInterface
+ * @see AMTModelType
+ * @author Neko
+ * @since 0.0.0
+ */
 public class AutomatedManualTransmission extends AbstractTransmissionModel implements AMTInterface {
     private AMTModelType amtModelType;
     private ArrayList<Double> gearRatioList;

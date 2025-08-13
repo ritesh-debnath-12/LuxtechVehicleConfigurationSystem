@@ -2,6 +2,15 @@ package com.lukxtech.enginefamily.engines.electric.records;
 
 import com.lukxtech.enginefamily.engines.electric.exceptions.BadChargeTimeHoursParameterException;
 
+/**
+ * <p>Charging Time Hours Record</p>
+ * <p>This record represents the charging time in hours for fast and slow charging.</p>
+ * <p><b>NOTE:</b> fastChargeHours < slowChargeHours and both params are non zero</p>
+ * 
+ * @param fastChargeHours The number of hours required for fast charging.
+ * @param slowChargeHours The number of hours required for slow charging.
+ * 
+ */
 public record ChargingTimeHours(int fastChargeHours, int slowChargeHours) {
     public ChargingTimeHours{
         if(fastChargeHours < 0){

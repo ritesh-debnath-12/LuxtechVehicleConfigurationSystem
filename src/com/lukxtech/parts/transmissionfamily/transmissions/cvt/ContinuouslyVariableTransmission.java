@@ -11,6 +11,19 @@ import com.lukxtech.parts.transmissionfamily.transmissions.cvt.exceptions.Invali
 
 import java.util.ArrayList;
 
+/**
+ * <h3>Continuously Variable Transmission Model</h3>
+ * <p>This class represents a Continuously Variable Transmission (CVT) system.</p>
+ * <p>CVT transmissions provide infinite gear ratios within a specific range, enabling</p>
+ * <p>smooth acceleration without discrete gear shifts and optimal engine RPM maintenance.</p>
+ * <p>It extends the AbstractTransmissionModel class and implements the CVTInterface.</p>
+ * 
+ * @see AbstractTransmissionModel
+ * @see CVTInterface
+ * @see CVTModelType
+ * @author Neko
+ * @since 0.0.0
+ */
 public class ContinuouslyVariableTransmission extends AbstractTransmissionModel implements CVTInterface {
     private CVTModelType cvtModelType;
     private ArrayList<Double> gearRatioList;
