@@ -12,9 +12,9 @@ import com.lukxtech.parts.transmissionfamily.abstracts.exceptions.InvalidTransmi
  * <li>CVT - Continuously Variable Transmission with infinite gear ratios</li>
  * <li>DCT - Dual Clutch Transmission with pre-selective gear technology</li>
  * </ul>
- * 
+ *
  * <p>This enum comes with a static fromString factory method to convert string to enum values.</p>
- * 
+ *
  * @author Neko
  * @since 0.0.0
  */
@@ -23,7 +23,7 @@ public enum TransmissionType {
 
     /**
      * <p>Factory method to convert string to TransmissionType enum</p>
-     * 
+     *
      * @param type -> The transmission type as string (case-insensitive)
      * @return The corresponding TransmissionType enum value
      * @throws InvalidTransmissionTypeException if the string doesn't match any valid transmission type
@@ -41,7 +41,7 @@ public enum TransmissionType {
 
     /**
      * <p>Returns a human-readable string representation of the transmission type</p>
-     * 
+     *
      * @return The display name of the transmission type
      */
     public String toString() {

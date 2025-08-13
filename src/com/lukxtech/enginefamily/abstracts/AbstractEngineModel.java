@@ -23,15 +23,14 @@ public abstract class AbstractEngineModel {
     protected int maxRPM;
 
     /**
-     * 
      * Constructor for the AbstractEngineModel class
      *
-     * @param modelNo The model number of the engine
-     * @param modelName The name of the engine model
+     * @param modelNo      The model number of the engine
+     * @param modelName    The name of the engine model
      * @param displacement The engine displacement in cubic centimeters
-     * @param minPower The minimum power output of the engine in horsepower (0 < minPower < maxPower)
-     * @param maxPower The maximum power output of the engine in horsepower (0 < minPower < maxPower)
-     * @param maxRPM The maximum revolutions per minute of the engine
+     * @param minPower     The minimum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxPower     The maximum power output of the engine in horsepower (0 < minPower < maxPower)
+     * @param maxRPM       The maximum revolutions per minute of the engine
      */
     public AbstractEngineModel(String modelNo, String modelName, int displacement, int minPower, int maxPower, int maxRPM) {
         this.modelNo = modelNo;
@@ -67,27 +66,31 @@ public abstract class AbstractEngineModel {
     }
 
     public void setModelNo(String modelNo) throws BadModelNumberException {
-        if(modelNo == null || modelNo.isEmpty()) throw new BadModelNumberException("ALERT! MODEL NUMBER CANNOT BE NULL OR EMPTY");
+        if (modelNo == null || modelNo.isEmpty())
+            throw new BadModelNumberException("ALERT! MODEL NUMBER CANNOT BE NULL OR EMPTY");
         this.modelNo = modelNo;
     }
 
     public void setModelName(String modelName) throws BadModelNameException {
-        if(modelName == null || modelName.isEmpty()) throw new BadModelNameException("ALERT! MODEL NAME CANNOT BE NULL OR EMPTY");
+        if (modelName == null || modelName.isEmpty())
+            throw new BadModelNameException("ALERT! MODEL NAME CANNOT BE NULL OR EMPTY");
         this.modelName = modelName;
     }
 
     public void setDisplacement(int displacement) throws BadDisplacementValueException {
-        if(displacement < 0) throw new BadDisplacementValueException("ALERT! DISPLACEMENT MUST BE > 0");
+        if (displacement < 0) throw new BadDisplacementValueException("ALERT! DISPLACEMENT MUST BE > 0");
         this.displacement = displacement;
     }
 
     public void setMinPower(int minPower) throws BadPowerValueException {
-        if(minPower < 0 || minPower > maxPower) throw new BadPowerValueException("ALERT! MIN POWER MUST BE BETWEEN 0 AND < THAN MAX POWER");
+        if (minPower < 0 || minPower > maxPower)
+            throw new BadPowerValueException("ALERT! MIN POWER MUST BE BETWEEN 0 AND < THAN MAX POWER");
         this.minPower = minPower;
     }
 
     public void setMaxPower(int maxPower) throws BadPowerValueException {
-        if(maxPower < 0 || maxPower < minPower)  throw new BadPowerValueException("ALERT! MAX POWER MUST BE BETWEEN 0 AND > THAN MIN POWER");
+        if (maxPower < 0 || maxPower < minPower)
+            throw new BadPowerValueException("ALERT! MAX POWER MUST BE BETWEEN 0 AND > THAN MIN POWER");
         this.maxPower = maxPower;
     }
 

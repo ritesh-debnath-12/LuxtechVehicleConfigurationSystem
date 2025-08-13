@@ -17,11 +17,11 @@ import java.util.ArrayList;
  * <p>CVT transmissions provide infinite gear ratios within a specific range, enabling</p>
  * <p>smooth acceleration without discrete gear shifts and optimal engine RPM maintenance.</p>
  * <p>It extends the AbstractTransmissionModel class and implements the CVTInterface.</p>
- * 
+ *
+ * @author Neko
  * @see AbstractTransmissionModel
  * @see CVTInterface
  * @see CVTModelType
- * @author Neko
  * @since 0.0.0
  */
 public class ContinuouslyVariableTransmission extends AbstractTransmissionModel implements CVTInterface {
@@ -49,11 +49,11 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
         this.gearRatioList = gearRatioList;
     }
 
-    public static class Builder extends AbstractTransmissionBuilder<ContinuouslyVariableTransmission, Builder>{
+    public static class Builder extends AbstractTransmissionBuilder<ContinuouslyVariableTransmission, Builder> {
         private CVTModelType cvtModelType;
         private ArrayList<Double> gearRatioList;
 
-        public Builder cvtModelType(CVTModelType cvtModelType){
+        public Builder cvtModelType(CVTModelType cvtModelType) {
             this.cvtModelType = cvtModelType;
             return this;
         }
@@ -63,7 +63,7 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
             return this;
         }
 
-        public Builder gearRatioList(ArrayList<Double> gearRatioList){
+        public Builder gearRatioList(ArrayList<Double> gearRatioList) {
             this.gearRatioList = gearRatioList;
             return this;
         }
@@ -80,15 +80,18 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
         }
 
         @Override
-        public void validate(){
+        public void validate() {
             validate_initial();
-            if(transmissionType != TransmissionType.CVT) throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
-            if(cvtModelType == null) throw new InvalidCVTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + cvtModelType);
-            if(gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)   throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
+            if (transmissionType != TransmissionType.CVT)
+                throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
+            if (cvtModelType == null)
+                throw new InvalidCVTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + cvtModelType);
+            if (gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)
+                throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
         }
 
         @Override
-        public Builder self(){
+        public Builder self() {
             return this;
         }
 
@@ -112,7 +115,7 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
         this.cvtModelType = cvtModelType;
     }
 
-    public void setCvtModelType(String cvtModelType) throws InvalidCVTModelTypeException{
+    public void setCvtModelType(String cvtModelType) throws InvalidCVTModelTypeException {
         this.cvtModelType = CVTModelType.fromString(cvtModelType);
     }
 
@@ -124,7 +127,7 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
         this.gearRatioList = gearRatioList;
     }
 
-    public void setGearRatioList(){
+    public void setGearRatioList() {
         this.gearRatioList = getGearRatioData();
     }
 
@@ -146,6 +149,7 @@ public class ContinuouslyVariableTransmission extends AbstractTransmissionModel 
             System.out.println("Gear " + (i + 1) + ": ");
             tmp.add(sc.nextDouble());
         }
+        sc.close();
         return tmp;
     }
 

@@ -22,7 +22,8 @@ public enum ExhaustGasRecirculationState {
             case "off" -> OFF;
             case "on" -> ON;
             case "variable" -> VARIABLE;
-            default -> throw new InvalidExhaustGasRecirculationStateException("BAD EGR STATE! GOT: " + state + "\n PERMISSIVE: off, on, variable");
+            default ->
+                    throw new InvalidExhaustGasRecirculationStateException("BAD EGR STATE! GOT: " + state + "\n PERMISSIVE: off, on, variable");
         };
     }
 }

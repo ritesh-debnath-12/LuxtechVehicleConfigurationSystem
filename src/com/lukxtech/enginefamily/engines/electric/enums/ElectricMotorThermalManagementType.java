@@ -10,17 +10,18 @@ import com.lukxtech.enginefamily.engines.electric.exceptions.InvalidElectricMoto
  *     <li>ACTIVE_LIQUID_COOLING</li>
  *     <li>PASSIVE</li>
  * </ul>
- * 
+ * <p>
  * This enum comes with a static fromString factory method to convert strings to enum values.
  */
 public enum ElectricMotorThermalManagementType {
     ACTIVE_LIQUID_COOLING, PASSIVE;
 
-    public static ElectricMotorThermalManagementType fromString(String type){
-        return switch (type.toLowerCase().trim()){
+    public static ElectricMotorThermalManagementType fromString(String type) {
+        return switch (type.toLowerCase().trim()) {
             case "active_liquid_cooling" -> ACTIVE_LIQUID_COOLING;
             case "passive" -> PASSIVE;
-            default -> throw new InvalidElectricMotorThermalManagementTypeException("BAD THERMAL MANAGEMENT TYPE! GOT: " + type + "\nPERMISSIVE: active_liquid_cooling, passive");
+            default ->
+                    throw new InvalidElectricMotorThermalManagementTypeException("BAD THERMAL MANAGEMENT TYPE! GOT: " + type + "\nPERMISSIVE: active_liquid_cooling, passive");
         };
     }
 }

@@ -9,10 +9,10 @@ import com.lukxtech.parts.transmissionfamily.transmissions.cvt.exceptions.Invali
  * <ul>
  * <li>CVT6 - 6-speed simulation Continuously Variable Transmission</li>
  * </ul>
- * 
+ *
  * <p>This enum comes with a static fromString factory method to convert string to enum values.</p>
  * <p>Note: CVT transmissions don't have traditional discrete gears but simulate gear steps for driver familiarity.</p>
- * 
+ *
  * @author Neko
  * @since 0.0.0
  */
@@ -21,15 +21,16 @@ public enum CVTModelType {
 
     /**
      * <p>Factory method to convert string to CVTModelType enum</p>
-     * 
+     *
      * @param type -> The CVT model type as string (case-insensitive)
      * @return The corresponding CVTModelType enum value
      * @throws InvalidCVTModelTypeException if the string doesn't match any valid CVT model type
      */
-    public static CVTModelType fromString(String type){
-        return switch (type.toLowerCase().trim()){
+    public static CVTModelType fromString(String type) {
+        return switch (type.toLowerCase().trim()) {
             case "cvt6" -> CVT6;
-            default -> throw new InvalidCVTModelTypeException("INVALID CVT MODEL TYPE! GOT: " + type + "\nPERMISSIVE: cvt6");
+            default ->
+                    throw new InvalidCVTModelTypeException("INVALID CVT MODEL TYPE! GOT: " + type + "\nPERMISSIVE: cvt6");
         };
     }
 }

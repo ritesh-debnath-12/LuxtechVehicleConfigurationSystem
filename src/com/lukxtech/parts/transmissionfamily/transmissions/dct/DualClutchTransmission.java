@@ -19,11 +19,11 @@ import java.util.ArrayList;
  * <p>DCT transmissions use two separate clutches for odd and even gears, enabling</p>
  * <p>pre-selection of the next gear and providing the fastest gear changes among automatic transmissions.</p>
  * <p>It extends the AbstractTransmissionModel class and implements the DCTInterface.</p>
- * 
+ *
+ * @author Neko
  * @see AbstractTransmissionModel
  * @see DCTInterface
  * @see DCTModelType
- * @author Neko
  * @since 0.0.0
  */
 public class DualClutchTransmission extends AbstractTransmissionModel implements DCTInterface {
@@ -45,27 +45,27 @@ public class DualClutchTransmission extends AbstractTransmissionModel implements
     }
 
     @Deprecated
-    public DualClutchTransmission(String transmissionType, int forwardGears, String dctModelType, ArrayList<Double> gearRatioList){
+    public DualClutchTransmission(String transmissionType, int forwardGears, String dctModelType, ArrayList<Double> gearRatioList) {
         super(transmissionType, forwardGears);
         this.dctModelType = DCTModelType.fromString(dctModelType);
         this.gearRatioList = gearRatioList;
     }
 
-    public static class Builder extends AbstractTransmissionBuilder<DualClutchTransmission, Builder>{
+    public static class Builder extends AbstractTransmissionBuilder<DualClutchTransmission, Builder> {
         private DCTModelType dctModelType;
         private ArrayList<Double> gearRatioList;
 
-        public Builder dctModelType(DCTModelType dctModelType){
+        public Builder dctModelType(DCTModelType dctModelType) {
             this.dctModelType = dctModelType;
             return this;
         }
 
-        public Builder dctModelType(String dctModelType) throws InvalidDCTModelTypeException{
+        public Builder dctModelType(String dctModelType) throws InvalidDCTModelTypeException {
             this.dctModelType = DCTModelType.fromString(dctModelType);
             return this;
         }
 
-        public Builder gearRatioList(ArrayList<Double> gearRatioList){
+        public Builder gearRatioList(ArrayList<Double> gearRatioList) {
             this.gearRatioList = gearRatioList;
             return this;
         }
@@ -78,24 +78,28 @@ public class DualClutchTransmission extends AbstractTransmissionModel implements
                 System.out.println("Gear " + (i + 1) + ": ");
                 gearRatioList.add(sc.nextDouble());
             }
+            sc.close();
             return this;
         }
 
         @Override
-        public void validate(){
+        public void validate() {
             validate_initial();
-            if(transmissionType != TransmissionType.DCT) throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
-            if(dctModelType == null) throw new InvalidCVTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + dctModelType);
-            if(gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)   throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
+            if (transmissionType != TransmissionType.DCT)
+                throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
+            if (dctModelType == null)
+                throw new InvalidCVTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + dctModelType);
+            if (gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)
+                throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
         }
 
         @Override
-        public Builder self(){
+        public Builder self() {
             return this;
         }
 
         @Override
-        public DualClutchTransmission build(){
+        public DualClutchTransmission build() {
             validate();
             return new DualClutchTransmission(
                     transmissionType,
@@ -126,7 +130,7 @@ public class DualClutchTransmission extends AbstractTransmissionModel implements
         this.gearRatioList = gearRatioList;
     }
 
-    public void setGearRatioList(){
+    public void setGearRatioList() {
         this.gearRatioList = getGearRatioData();
     }
 

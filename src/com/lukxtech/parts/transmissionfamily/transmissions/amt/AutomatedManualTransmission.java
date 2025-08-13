@@ -17,11 +17,11 @@ import java.util.ArrayList;
  * <p>AMT transmissions combine the efficiency of manual transmissions with automated</p>
  * <p>gear shifting, reducing driver intervention while maintaining discrete gear ratios.</p>
  * <p>It extends the AbstractTransmissionModel class and implements the AMTInterface.</p>
- * 
+ *
+ * @author Neko
  * @see AbstractTransmissionModel
  * @see AMTInterface
  * @see AMTModelType
- * @author Neko
  * @since 0.0.0
  */
 public class AutomatedManualTransmission extends AbstractTransmissionModel implements AMTInterface {
@@ -34,23 +34,26 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
         this.amtModelType = amtModelType;
         this.gearRatioList = gearRatioList;
     }
+
     @Deprecated
     public AutomatedManualTransmission(String transmissionType, String modelNumber, int forwardGears, AMTModelType amtModelType) {
         super(transmissionType, forwardGears);
         this.amtModelType = amtModelType;
         this.gearRatioList = getGearRatioData();
     }
+
     @Deprecated
     public AutomatedManualTransmission(String transmissionType, String modelNumber, int forwardGears, String amtModelType) {
         super(transmissionType, forwardGears);
         this.amtModelType = AMTModelType.fromString(amtModelType);
         this.gearRatioList = getGearRatioData();
     }
-    public static class Builder extends AbstractTransmissionBuilder<AutomatedManualTransmission, Builder>{
+
+    public static class Builder extends AbstractTransmissionBuilder<AutomatedManualTransmission, Builder> {
         private AMTModelType amtModelType;
         private ArrayList<Double> gearRatioList;
 
-        public Builder amtModelType(AMTModelType amtModelType){
+        public Builder amtModelType(AMTModelType amtModelType) {
             this.amtModelType = amtModelType;
             return this;
         }
@@ -60,7 +63,7 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
             return this;
         }
 
-        public Builder gearRatioList(ArrayList<Double> gearRatioList){
+        public Builder gearRatioList(ArrayList<Double> gearRatioList) {
             this.gearRatioList = gearRatioList;
             return this;
         }
@@ -73,19 +76,23 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
                 System.out.println("Gear " + (i + 1) + ": ");
                 gearRatioList.add(sc.nextDouble());
             }
+            sc.close();
             return this;
         }
 
         @Override
-        public void validate(){
+        public void validate() {
             validate_initial();
-            if(transmissionType != TransmissionType.AMT) throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
-            if(amtModelType == null) throw new InvalidAMTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + amtModelType);
-            if(gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)   throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
+            if (transmissionType != TransmissionType.AMT)
+                throw new InvalidTransmissionTypeException("ALERT! INVALID TRANSMISSION TYPE RECIEVED! GOT: " + transmissionType);
+            if (amtModelType == null)
+                throw new InvalidAMTModelTypeException("ALERT! AMT MODEL TYPE NOT SPECIFIED! GOT: " + amtModelType);
+            if (gearRatioList == null || gearRatioList.isEmpty() || gearRatioList.size() != forwardGears)
+                throw new BadGearRatioListException("ALERT! BAD GEAR RATIO VALUES, GOT: " + gearRatioList);
         }
 
         @Override
-        public Builder self(){
+        public Builder self() {
             return this;
         }
 
@@ -100,24 +107,31 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
             );
         }
     }
+
     public AMTModelType getAmtModelType() {
         return amtModelType;
     }
+
     public void setAmtModelType(AMTModelType amtModelType) {
         this.amtModelType = amtModelType;
     }
+
     public void setAmtModelType(String amtModelType) {
         this.amtModelType = AMTModelType.fromString(amtModelType);
     }
+
     public ArrayList<Double> getGearRatioList() {
         return gearRatioList;
     }
+
     public void setGearRatioList(ArrayList<Double> gearRatioList) {
         this.gearRatioList = gearRatioList;
     }
-    public void setGearRatioList(){
+
+    public void setGearRatioList() {
         this.gearRatioList = getGearRatioData();
     }
+
     private void printGearRatio(StringBuilder builderInstance) {
         int counter = 0;
         for (double x : gearRatioList) {
@@ -125,6 +139,7 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
             builderInstance.append("\tGear Ratio ").append(counter).append(": ").append(x).append("\n");
         }
     }
+
     @Override
     protected ArrayList<Double> getGearRatioData() {
         gearRatioList = new ArrayList<Double>();
@@ -137,6 +152,7 @@ public class AutomatedManualTransmission extends AbstractTransmissionModel imple
         }
         return tmp;
     }
+
     @Override
     public String toString() {
         StringBuilder initialBuilder = new StringBuilder();
