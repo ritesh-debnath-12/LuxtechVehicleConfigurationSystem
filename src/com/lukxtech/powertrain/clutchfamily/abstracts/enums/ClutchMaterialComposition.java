@@ -22,7 +22,7 @@ public enum ClutchMaterialComposition {
             case "organic" -> ORGANIC;
             case "ceramic" -> CERAMIC;
             case "carbon" -> CARBON;
-            default -> throw new InvalidClutchMaterialCompositionTypeException("INVALID CLUTCH MATERIAL TYPE! GOT: " + type);
+            default -> throw new InvalidClutchMaterialCompositionTypeException("INVALID CLUTCH MATERIAL TYPE! GOT: " + type + "\nPERMISSIVE: organic, ceramic, carbon");
         };
     }
 }

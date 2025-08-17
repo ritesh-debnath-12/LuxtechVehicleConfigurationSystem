@@ -73,14 +73,14 @@ public abstract class AbstractClutchBuilder<T extends AbstractClutchModel, B ext
             throw new BadModelNumberException("MODEL NUMBER NOT SPECIFIED! GOT: " + modelNumber);
         if(clutchType == null)
             throw new InvalidClutchTypeException("ALERT! CLUTCH TYPE NOT SPECIFIED! GOT: " + clutchType);
-        if(torqueCapacityNM < 0)
-            throw new InvalidTorqueCapacityValueException("ALERT! TORQUE CAPACITY CANNOT BE LESS THAN ZERO! GOT: " + torqueCapacityNM);
+        if(torqueCapacityNM <= 0)
+            throw new InvalidTorqueCapacityValueException("ALERT! TORQUE CAPACITY CANNOT BE LESS THAN OR EQUAL TO ZERO! GOT: " + torqueCapacityNM);
         if(clutchMaterialComposition == null)
             throw new InvalidClutchMaterialCompositionTypeException("ALERT! CLUTCH MATERIAL NOT SPECIFIED! GOT: " + clutchMaterialComposition);
-        if(frictionDiameterMM < 0)
-            throw new InvalidFrictionDiameterValueException("ALERT! FRICTION CAPACITY CANNOT BE LESS THAN ZERO! GOT: " + frictionDiameterMM);
-        if(serviceLifeCycles < 0)
-            throw new InvalidServiceLifeCycleValueException("ALERT! SERVICE LIFE CYCLE CANNOT BE LESS THAN ZERO! GOT: " + serviceLifeCycles);
+        if(frictionDiameterMM <= 0)
+            throw new InvalidFrictionDiameterValueException("ALERT! FRICTION DIAMETER CANNOT BE LESS THAN OR EQUAL TO ZERO! GOT: " + frictionDiameterMM);
+        if(serviceLifeCycles <= 0)
+            throw new InvalidServiceLifeCycleValueException("ALERT! SERVICE LIFE CYCLE CANNOT BE LESS THAN OR EQUAL TO ZERO! GOT: " + serviceLifeCycles);
     }
 
     public abstract void validate();

@@ -29,7 +29,7 @@ public enum ClutchType {
             case "electronic_clutch" -> ELECTRONIC_CLUTCH;
             case "dual_clutch" -> DUAL_CLUTCH;
             case "electromagnetic_clutch" -> ELECTROMAGNETIC_CLUTCH;
-            default -> throw new InvalidClutchTypeException("INVALID CLUTCH TYPE! GOT: " + type);
+            default -> throw new InvalidClutchTypeException("INVALID CLUTCH TYPE! GOT: " + type + "\nPERMISSIVE: single_plate_clutch, multi_plate_clutch, hydraulic_clutch, electronic_clutch, dual_clutch, electromagnetic_clutch");
         };
     }
 }

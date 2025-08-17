@@ -7,6 +7,17 @@
 
 ---
 
+## 1.1.5.a
+### Added
+- Added Implementations for Single Plate, Multi Plate and Hydraulic Clutch
+- Declared interfaces to be used by clutches
+- Created implementations for clutches to test their working
+
+### Fixed
+- Fixed some enums(`ClutchMaterialComposition` and `ClutchType`) not displaying permissive values
+- Fixed validation issue with `AbstractClutchBuilder`
+---
+
 ## 1.1.4.a
 ### Added
 - Added Abstract Classes for Clutch Parts
