@@ -3,6 +3,15 @@
 
 public class Main {
     public static void main(String[] args) {
+        /* Vehicle vh = new Vehicle(
+            new Powertrain(......),
+            new Structure(......),
+            new EnergyStorage(.....),
+            new EnergyDelivery(.....),
+            new ControlSystem(.....),
+        )
+
+         */
         System.out.println("Hello, World!");
     }
 }

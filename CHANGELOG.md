@@ -7,15 +7,24 @@
 
 ---
 
-## 1.1.5.a (UNRELEASED)
+## 1.1.5.a
 ### Added
-- Added Implementations for Single Plate, Multi Plate and Hydraulic Clutch
+- Main.java now has a commented section showing how the vehicle is supposed to be built.
+  - Check `src.Main`
+- Added Implementations for all the clutch
+  - Check `src.com.lukxtech.powertrain.clutchfamily`
 - Declared interfaces to be used by clutches
 - Created implementations for clutches to test their working
 
 ### Fixed
+- For better readability, added newlines after each parameter for Clutch constructors
+- Some clutch interface setters had parameters missing, fixed and corrected some types
 - Fixed some enums(`ClutchMaterialComposition` and `ClutchType`) not displaying permissive values
 - Fixed validation issue with `AbstractClutchBuilder`
+
+### Note
+It seems there is a requirement for prefabricated parts for faster testing...need to think about that...
+
 ---
 
 ## 1.1.4.a

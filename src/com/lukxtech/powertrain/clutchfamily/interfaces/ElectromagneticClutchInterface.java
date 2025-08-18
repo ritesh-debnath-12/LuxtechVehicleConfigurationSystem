@@ -1,10 +1,10 @@
 package com.lukxtech.powertrain.clutchfamily.interfaces;
 
 public interface ElectromagneticClutchInterface {
-    double getMagneticCoilPower();
-    void setMagneticCoilPower(double magneticCoilPower);
-    double getResponseTime();
-    void setResponseTime();
+    double getMagneticCoilPowerW();
+    void setMagneticCoilPowerW(double magneticCoilPowerW);
+    int getResponseTimeMS();
+    void setResponseTimeMS(int responseTimeMS);
     int getVoltageRating();
     void setVoltageRating(int voltageRating);
 }

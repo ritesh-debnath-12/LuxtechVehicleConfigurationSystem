@@ -1,4 +1,4 @@
-package com.lukxtech.powertrain.clutchfamily.clutches.hydraulic;
+package com.lukxtech.powertrain.clutchfamily.clutches.electronicbased.electronic;
 
 import com.lukxtech.powertrain.clutchfamily.abstracts.AbstractClutchBuilder;
 import com.lukxtech.powertrain.clutchfamily.abstracts.AbstractClutchModel;
@@ -6,76 +6,49 @@ import com.lukxtech.powertrain.clutchfamily.abstracts.enums.ClutchMaterialCompos
 import com.lukxtech.powertrain.clutchfamily.abstracts.enums.ClutchType;
 import com.lukxtech.powertrain.clutchfamily.abstracts.exceptions.InvalidClutchMaterialCompositionTypeException;
 import com.lukxtech.powertrain.clutchfamily.abstracts.exceptions.InvalidClutchTypeException;
-import com.lukxtech.powertrain.clutchfamily.clutches.hydraulic.enums.HydraulicFluidType;
-import com.lukxtech.powertrain.clutchfamily.clutches.hydraulic.exceptions.InvalidHydraulicFluidTypeException;
+import com.lukxtech.powertrain.clutchfamily.clutches.electronicbased.electronic.exceptions.BadControlModuleVersionException;
 import com.lukxtech.powertrain.clutchfamily.common.enums.ActuationType;
 import com.lukxtech.powertrain.clutchfamily.common.enums.CoolingType;
 import com.lukxtech.powertrain.clutchfamily.common.exceptions.BadClutchTypeException;
 import com.lukxtech.powertrain.clutchfamily.common.exceptions.InvalidActuatorTypeException;
 import com.lukxtech.powertrain.clutchfamily.common.exceptions.InvalidCoolingTypeException;
 import com.lukxtech.powertrain.clutchfamily.interfaces.ClutchInterface;
-import com.lukxtech.powertrain.clutchfamily.interfaces.HydraulicClutchInterface;
+import com.lukxtech.powertrain.clutchfamily.interfaces.ElectronicControlBasedClutchInterface;
 
-public class HydraulicClutch extends AbstractClutchModel implements ClutchInterface, HydraulicClutchInterface {
+public class ElectronicClutch extends AbstractClutchModel implements ClutchInterface, ElectronicControlBasedClutchInterface {
+    //    private ArrayList<Sensor> sensorList;
     private ActuationType actuationType;
     private CoolingType coolingType;
-    private HydraulicFluidType fluidType;
+    private String controlModuleVersion;
 
     @Deprecated
-    public HydraulicClutch(String modelNumber,
-                           ClutchType clutchType,
-                           int torqueCapacityNM,
-                           ClutchMaterialComposition clutchMaterialComposition,
-                           double frictionDiameterMM,
-                           long serviceLifeCycles,
-                           ActuationType actuationType,
-                           CoolingType coolingType,
-                           HydraulicFluidType fluidType
-    ) {
+    public ElectronicClutch(String modelNumber, ClutchType clutchType, int torqueCapacityNM, ClutchMaterialComposition clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, ActuationType actuationType, CoolingType coolingType, String controlModuleVersion) {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.actuationType = actuationType;
         this.coolingType = coolingType;
-        this.fluidType = fluidType;
+        this.controlModuleVersion = controlModuleVersion;
     }
 
     @Deprecated
-    public HydraulicClutch(String modelNumber,
-                           String clutchType,
-                           int torqueCapacityNM,
-                           ClutchMaterialComposition clutchMaterialComposition,
-                           double frictionDiameterMM,
-                           long serviceLifeCycles,
-                           ActuationType actuationType,
-                           CoolingType coolingType,
-                           HydraulicFluidType fluidType
-    ) throws InvalidClutchTypeException {
+    public ElectronicClutch(String modelNumber, String clutchType, int torqueCapacityNM, ClutchMaterialComposition clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, ActuationType actuationType, CoolingType coolingType, String controlModuleVersion) throws InvalidClutchTypeException {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.actuationType = actuationType;
         this.coolingType = coolingType;
-        this.fluidType = fluidType;
+        this.controlModuleVersion = controlModuleVersion;
     }
 
     @Deprecated
-    public HydraulicClutch(String modelNumber,
-                           String clutchType,
-                           int torqueCapacityNM,
-                           String clutchMaterialComposition,
-                           double frictionDiameterMM,
-                           long serviceLifeCycles,
-                           ActuationType actuationType,
-                           CoolingType coolingType,
-                           HydraulicFluidType fluidType
-    ) throws InvalidClutchTypeException, InvalidClutchMaterialCompositionTypeException {
+    public ElectronicClutch(String modelNumber, String clutchType, int torqueCapacityNM, String clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, ActuationType actuationType, CoolingType coolingType, String controlModuleVersion) throws InvalidClutchTypeException, InvalidClutchMaterialCompositionTypeException {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.actuationType = actuationType;
         this.coolingType = coolingType;
-        this.fluidType = fluidType;
+        this.controlModuleVersion = controlModuleVersion;
     }
 
-    public static class Builder extends AbstractClutchBuilder<HydraulicClutch, Builder> {
+    public static class Builder extends AbstractClutchBuilder<ElectronicClutch, Builder> {
         private ActuationType actuationType;
         private CoolingType coolingType;
-        private HydraulicFluidType fluidType;
+        private String controlModuleVersion;
 
         public Builder actuationType(ActuationType actuationType) {
             this.actuationType = actuationType;
@@ -97,27 +70,22 @@ public class HydraulicClutch extends AbstractClutchModel implements ClutchInterf
             return this;
         }
 
-        public Builder fluidType(HydraulicFluidType fluidType) {
-            this.fluidType = fluidType;
-            return this;
-        }
-
-        public Builder fluidType(String fluidType) {
-            this.fluidType = HydraulicFluidType.fromString(fluidType);
+        public Builder controlModuleVersion(String controlModuleVersion) {
+            this.controlModuleVersion = controlModuleVersion;
             return this;
         }
 
         @Override
         public void validate() {
             validate_initial();
-            if (clutchType != ClutchType.HYDRAULIC_CLUTCH)
+            if (clutchType != ClutchType.ELECTRONIC_CLUTCH)
                 throw new BadClutchTypeException("BAD CLUTCH TYPE! GOT: " + clutchType);
-            if (fluidType == null)
-                throw new InvalidHydraulicFluidTypeException("ALERT! FLUID TYPE NOT SPECIFIED! GOT: " + fluidType);
             if (actuationType == null)
                 throw new InvalidActuatorTypeException("ALERT! ACTUATOR UNIT NOT SPECIFIED! GOT: " + actuationType);
             if (coolingType == null)
                 throw new InvalidCoolingTypeException("ALERT! COOLING TYPE NOT SPECIFIED! GOT: " + coolingType);
+            if (controlModuleVersion == null || controlModuleVersion.isEmpty())
+                throw new BadControlModuleVersionException("ALERT! CONTROL MODULE VERSION NOT SPECIFIED! GOT: " + controlModuleVersion);
         }
 
         @Override
@@ -126,9 +94,9 @@ public class HydraulicClutch extends AbstractClutchModel implements ClutchInterf
         }
 
         @Override
-        public HydraulicClutch build() {
+        public ElectronicClutch build() {
             validate();
-            return new HydraulicClutch(
+            return new ElectronicClutch(
                     modelNumber,
                     clutchType,
                     torqueCapacityNM,
@@ -137,7 +105,7 @@ public class HydraulicClutch extends AbstractClutchModel implements ClutchInterf
                     serviceLifeCycles,
                     actuationType,
                     coolingType,
-                    fluidType
+                    controlModuleVersion
             );
         }
     }
@@ -173,18 +141,13 @@ public class HydraulicClutch extends AbstractClutchModel implements ClutchInterf
     }
 
     @Override
-    public HydraulicFluidType getFluidType() {
-        return fluidType;
+    public String getControlModuleVersion() {
+        return controlModuleVersion;
     }
 
     @Override
-    public void setFluidType(HydraulicFluidType fluidType) {
-        this.fluidType = fluidType;
-    }
-
-    @Override
-    public void setFluidType(String fluidType) {
-        this.fluidType = HydraulicFluidType.fromString(fluidType);
+    public void setControlModuleVersion(String controlModuleVersion) {
+        this.controlModuleVersion = controlModuleVersion;
     }
 
     @Override
@@ -198,7 +161,7 @@ public class HydraulicClutch extends AbstractClutchModel implements ClutchInterf
                 .append("Clutch Material Composition: ").append(clutchMaterialComposition).append("\n")
                 .append("Friction Diameter(mm): ").append(frictionDiameterMM).append("\n")
                 .append("Service Life Cycle: ").append(serviceLifeCycles).append("\n")
-                .append("Fluid Type: ").append(fluidType).append("\n")
+                .append("Control Module Version: ").append(controlModuleVersion).append("\n")
                 .append("----------------------------------------\n")
                 .toString();
     }

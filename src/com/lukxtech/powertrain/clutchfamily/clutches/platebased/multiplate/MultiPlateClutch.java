@@ -21,19 +21,40 @@ public class MultiPlateClutch extends AbstractClutchModel implements ClutchInter
     private int numberOfPlates;
 
     @Deprecated
-    public MultiPlateClutch(String modelNumber, ClutchType clutchType, int torqueCapacityNM, ClutchMaterialComposition clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, int numberOfPlates) {
+    public MultiPlateClutch(String modelNumber,
+                            ClutchType clutchType,
+                            int torqueCapacityNM,
+                            ClutchMaterialComposition clutchMaterialComposition,
+                            double frictionDiameterMM,
+                            long serviceLifeCycles,
+                            int numberOfPlates
+    ) {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.numberOfPlates = numberOfPlates;
     }
 
     @Deprecated
-    public MultiPlateClutch(String modelNumber, String clutchType, int torqueCapacityNM, ClutchMaterialComposition clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, int numberOfPlates) throws InvalidClutchTypeException {
+    public MultiPlateClutch(String modelNumber,
+                            String clutchType,
+                            int torqueCapacityNM,
+                            ClutchMaterialComposition clutchMaterialComposition,
+                            double frictionDiameterMM,
+                            long serviceLifeCycles,
+                            int numberOfPlates
+    ) throws InvalidClutchTypeException {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.numberOfPlates = numberOfPlates;
     }
 
     @Deprecated
-    public MultiPlateClutch(String modelNumber, String clutchType, int torqueCapacityNM, String clutchMaterialComposition, double frictionDiameterMM, long serviceLifeCycles, int numberOfPlates) throws InvalidClutchTypeException, InvalidClutchMaterialCompositionTypeException {
+    public MultiPlateClutch(String modelNumber,
+                            String clutchType,
+                            int torqueCapacityNM,
+                            String clutchMaterialComposition,
+                            double frictionDiameterMM,
+                            long serviceLifeCycles,
+                            int numberOfPlates
+    ) throws InvalidClutchTypeException, InvalidClutchMaterialCompositionTypeException {
         super(modelNumber, clutchType, torqueCapacityNM, clutchMaterialComposition, frictionDiameterMM, serviceLifeCycles);
         this.numberOfPlates = numberOfPlates;
     }
@@ -43,12 +64,12 @@ public class MultiPlateClutch extends AbstractClutchModel implements ClutchInter
         private CoolingType coolingType;
         private Integer numberOfPlates;
 
-        public Builder actuatorType(ActuationType actuationType){
+        public Builder actuatorType(ActuationType actuationType) {
             this.actuationType = actuationType;
             return this;
         }
 
-        public Builder actuatorType(String actuationType){
+        public Builder actuatorType(String actuationType) {
             this.actuationType = ActuationType.fromString(actuationType);
             return this;
         }
@@ -71,11 +92,16 @@ public class MultiPlateClutch extends AbstractClutchModel implements ClutchInter
         @Override
         public void validate() {
             validate_initial();
-            if(clutchType != ClutchType.MULTI_PLATE_CLUTCH) throw new BadClutchTypeException("BAD CLUTCH TYPE! GOT: " + clutchType);
-            if(numberOfPlates <= 0) throw new InvalidNumberOfPlateValueException("ALERT! PLATE NUMBER CANNOT BE LESS THAN ZERO! GOT: " + numberOfPlates);
-            if(numberOfPlates == null || numberOfPlates <= 1) throw new InvalidNumberOfPlateValueException("ALERT! FOR MULTI PLATE CLUTCH, PLATE NUMBER HAS TO BE >1! GOT: " + numberOfPlates);
-            if(actuationType == null) throw new InvalidActuatorTypeException("ALERT! ACTUATOR UNIT NOT SPECIFIED! GOT: " + actuationType);
-            if(coolingType == null) throw new InvalidCoolingTypeException("ALERT! COOLING TYPE NOT SPECIFIED! GOT: " + coolingType);
+            if (clutchType != ClutchType.MULTI_PLATE_CLUTCH)
+                throw new BadClutchTypeException("BAD CLUTCH TYPE! GOT: " + clutchType);
+            if (numberOfPlates <= 0)
+                throw new InvalidNumberOfPlateValueException("ALERT! PLATE NUMBER CANNOT BE LESS THAN ZERO! GOT: " + numberOfPlates);
+            if (numberOfPlates == null || numberOfPlates <= 1)
+                throw new InvalidNumberOfPlateValueException("ALERT! FOR MULTI PLATE CLUTCH, PLATE NUMBER HAS TO BE >1! GOT: " + numberOfPlates);
+            if (actuationType == null)
+                throw new InvalidActuatorTypeException("ALERT! ACTUATOR UNIT NOT SPECIFIED! GOT: " + actuationType);
+            if (coolingType == null)
+                throw new InvalidCoolingTypeException("ALERT! COOLING TYPE NOT SPECIFIED! GOT: " + coolingType);
         }
 
         @Override
@@ -139,7 +165,7 @@ public class MultiPlateClutch extends AbstractClutchModel implements ClutchInter
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         return builder
                 .append("----------------------------------------\n")
